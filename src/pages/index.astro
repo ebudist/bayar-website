@@ -1,16 +1,244 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Sulistyanto Service - Payment Information">
+	<main class="container mx-auto px-4 sm:px-5 md:px-6 py-6 sm:py-8 max-w-4xl">
+		<!-- Header Section -->
+		<div class="text-center mb-12">
+			<div class="inline-flex items-center justify-center w-20 h-20 bg-blue-600 dark:bg-blue-500 rounded-full mb-6">
+				<svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+				</svg>
+			</div>
+			<h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+				Sulistyanto Service
+			</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+				Informasi Pembayaran yang Mudah dan Aman
+			</p>
+		</div>
+
+		<!-- Payment Information Cards -->
+		<div class="grid gap-6 sm:gap-8 md:gap-12">
+			<!-- Payment Rules Card -->
+			<div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+				<div class="flex items-center mb-6">
+					<div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-4">
+						<svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+					</div>
+					<h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Informasi Pembayaran</h2>
+				</div>
+				<div class="space-y-4">
+					<div class="flex items-start">
+						<div class="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+						<p class="text-gray-700 dark:text-gray-300">Minimum pembayaran adalah <span class="font-semibold text-green-600 dark:text-green-400">Rp.1.000</span></p>
+					</div>
+					<div class="flex items-start">
+						<div class="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+						<p class="text-gray-700 dark:text-gray-300">Jika terjadi kesalahan nominal pembayaran, klaim pengembalian dana maksimal <span class="font-semibold text-orange-600 dark:text-orange-400">1x24 jam</span></p>
+					</div>
+				</div>
+			</div>
+
+			<!-- QRIS Payment Card -->
+			<div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+				<div class="flex items-center mb-6">
+					<div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mr-4">
+						<svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+						</svg>
+					</div>
+					<div class="flex justify-center">
+						<img src="https://ucarecdn.com/a83add08-df66-4bfb-93af-ebef78515e18/-/preview/472x204/" alt="QRIS" class="h-6 object-contain" loading="lazy" />
+					</div>
+				</div>
+			<div class="text-center">
+					<div id="qris-container" class="bg-gray-100 dark:bg-gray-700 rounded-xl p-8 mb-6 max-w-2xl mx-auto hidden">
+						<div class="bg-white dark:bg-gray-600 rounded-lg shadow-sm flex items-center justify-center mx-auto overflow-hidden">
+							<img 
+								src="https://ucarecdn.com/56bf6484-c3ab-41a0-a1b4-9ec71e590400/-/preview/709x1000/" 
+								alt="QRIS Code" 
+								class="w-full sm:w-[90%] h-auto object-contain"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+					<div id="qris-logo" class="flex items-center justify-center mb-4 hidden">
+						<img 
+							src="https://ucarecdn.com/a83add08-df66-4bfb-93af-ebef78515e18/-/preview/472x204/" 
+							alt="QRIS Logo" 
+							class="h-8"
+							loading="lazy"
+						/>
+					</div>
+					<p id="qris-instruction" class="text-gray-600 dark:text-gray-300 mb-4 hidden">Scan QRIS dengan e-wallet atau banking app</p>
+					<button id="qris-toggle" class="bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+						Show QRIS
+					</button>
+				</div>
+			</div>
+
+			<!-- Bank Accounts Card -->
+			<div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+				<div class="flex items-center mb-6">
+					<div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
+						<svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+						</svg>
+					</div>
+					<h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Bank Account</h2>
+				</div>
+				
+				<div class="grid gap-6 sm:gap-8 md:grid-cols-2">
+					<!-- BCA Account -->
+					<div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-xl p-6 border border-red-200 dark:border-red-700 transition-colors duration-300">
+						<div class="flex items-center mb-4">
+							<div class="w-12 h-8 flex items-center justify-center mr-3">
+								<img 
+									src="https://www.bca.co.id/-/media/Feature/Card/List-Card/Tentang-BCA/Brand-Assets/Logo-BCA/Logo-BCA_Biru.png" 
+									alt="BCA Logo" 
+									class="h-6 object-contain"
+									loading="lazy"
+								/>
+							</div>
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">BCA</h3>
+						</div>
+						<div class="space-y-3">
+							<div>
+								<p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Nomor Rekening</p>
+								<div class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg p-3 border dark:border-gray-600">
+									<span class="font-mono text-lg font-semibold text-gray-900 dark:text-white">1462557277</span>
+									<button class="copy-btn text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200" data-account="1462557277">
+										Copy
+									</button>
+								</div>
+							</div>
+							<div>
+								<p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Atas Nama</p>
+								<p class="font-medium text-gray-900 dark:text-white">EKO BUDI SULISTYANTO</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Mandiri Account -->
+					<div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-6 border border-green-200 dark:border-green-700 transition-colors duration-300">
+						<div class="flex items-center mb-4">
+							<div class="w-12 h-8 flex items-center justify-center mr-3">
+								<img 
+									src="https://ucarecdn.com/ca9dc476-7b1f-417e-a7c9-2d76bd3fe2a1/-/preview/920x268/" 
+									alt="Mandiri Logo" 
+									class="h-6 object-contain"
+									loading="lazy"
+								/>
+							</div>
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Mandiri</h3>
+						</div>
+						<div class="space-y-3">
+							<div>
+								<p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Nomor Rekening</p>
+								<div class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-lg p-3 border dark:border-gray-600">
+									<span class="font-mono text-lg font-semibold text-gray-900 dark:text-white">700009813069</span>
+									<button class="copy-btn text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200" data-account="700009813069">
+										Copy
+									</button>
+								</div>
+							</div>
+							<div>
+								<p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Atas Nama</p>
+								<p class="font-medium text-gray-900 dark:text-white">EKO BUDI SULISTYANTO</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer class="text-center mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+			<p class="text-gray-500 dark:text-gray-400">© Sulistyanto Service.</p>
+		</footer>
+	</main>
+
+	<!-- Toast Notification -->
+	<div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+		<div class="flex items-center">
+			<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+			</svg>
+			<span>Account number copied!</span>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	// Copy to clipboard functionality
+	document.addEventListener('DOMContentLoaded', function() {
+		const copyButtons = document.querySelectorAll('.copy-btn');
+		const toast = document.getElementById('toast');
+
+		copyButtons.forEach(button => {
+			button.addEventListener('click', async function() {
+				const accountNumber = this.getAttribute('data-account');
+				
+				try {
+					await navigator.clipboard.writeText(accountNumber);
+					
+					// Show toast notification
+					toast.classList.remove('translate-x-full');
+					setTimeout(() => {
+						toast.classList.add('translate-x-full');
+					}, 3000);
+				} catch (err) {
+					console.error('Failed to copy: ', err);
+					// Fallback for older browsers
+					const textArea = document.createElement('textarea');
+					textArea.value = accountNumber;
+					document.body.appendChild(textArea);
+					textArea.select();
+					document.execCommand('copy');
+					document.body.removeChild(textArea);
+					
+					// Show toast notification
+					toast.classList.remove('translate-x-full');
+					setTimeout(() => {
+						toast.classList.add('translate-x-full');
+					}, 3000);
+				}
+			});
+		});
+
+		// QRIS toggle functionality
+		const qrisToggle = document.getElementById('qris-toggle');
+		const qrisContainer = document.getElementById('qris-container');
+		const qrisLogo = document.getElementById('qris-logo');
+		const qrisInstruction = document.getElementById('qris-instruction');
+		let isQRISVisible = false;
+
+		qrisToggle.addEventListener('click', function() {
+			if (isQRISVisible) {
+				// Hide QRIS
+				qrisContainer.classList.add('hidden');
+				qrisLogo.classList.add('hidden');
+				qrisInstruction.classList.add('hidden');
+				qrisToggle.textContent = 'Show QRIS';
+				qrisToggle.classList.remove('bg-red-600', 'hover:bg-red-700', 'dark:bg-red-500', 'dark:hover:bg-red-600');
+				qrisToggle.classList.add('bg-purple-600', 'hover:bg-purple-700', 'dark:bg-purple-500', 'dark:hover:bg-purple-600');
+				isQRISVisible = false;
+			} else {
+				// Show QRIS
+				qrisContainer.classList.remove('hidden');
+				qrisLogo.classList.remove('hidden');
+				qrisInstruction.classList.remove('hidden');
+				qrisToggle.textContent = 'Hide QRIS';
+				qrisToggle.classList.remove('bg-purple-600', 'hover:bg-purple-700', 'dark:bg-purple-500', 'dark:hover:bg-purple-600');
+				qrisToggle.classList.add('bg-red-600', 'hover:bg-red-700', 'dark:bg-red-500', 'dark:hover:bg-red-600');
+				isQRISVisible = true;
+			}
+		});
+
+	});
+</script>
